@@ -1,5 +1,5 @@
 # Demo
-[Link =>](https://currency-converter-tool.netlify.app/)
+https://currency-converter-tool.netlify.app/
 
 # Getting Started with Create React App
 
