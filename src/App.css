@@ -1,0 +1,19 @@
+.App {
+  text-align: center;
+  background-color: white;
+}
+
+.App-header {
+  background-color: #5c6f95;
+  min-height: 100cm;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(255, 255, 255);
+}
+
+.body{
+  margin-right: 20px;
+}
