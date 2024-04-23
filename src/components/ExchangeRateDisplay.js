@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import '../CurrencyConverter.css';
 
 // Define inline CSS styles
 const styles = {
@@ -79,6 +78,7 @@ const CurrencyConverter = () => {
           ))}
         </select>
         </div>
+        <br/>
         <div>
         <label className="label">To Country: &nbsp;&nbsp;&nbsp;&nbsp;</label>
         <select className="form-select-sm"style={styles.lists_boxs} value={selectedToCountry} onChange={(e) => setSelectedToCountry(e.target.value)}>
@@ -88,6 +88,7 @@ const CurrencyConverter = () => {
           ))}
         </select>
         </div>
+        <br/>
         <div>
         <label className="label">Enter amount:</label>
         <input className="form-select-sm" style={styles.lists_boxs}
@@ -96,7 +97,10 @@ const CurrencyConverter = () => {
           onChange={(e) => setAmount(e.target.value)}
         />
         </div>
-        <button className="btn btn-success" onClick={convertAmount}>Convert</button>
+        <br/>
+        <div>
+          <button className="btn btn-success" style={{position: 'absolute'}} onClick={convertAmount}>Convert</button>
+        </div>
       </div>
       {
       convertedAmount && (
