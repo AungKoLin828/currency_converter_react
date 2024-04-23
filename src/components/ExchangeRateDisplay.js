@@ -1,6 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../CurrencyConverter.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+//import '../CurrencyConverter.css';
+
+// Define inline CSS styles
+const styles = {
+  container: {
+    backgroundColor: 'lightblue',
+    padding: '5%',
+    borderRadius: '5px',
+  },
+  lists_boxs: {
+    borderRadius: '5%',
+    width: '30%',
+    maxWidth: '30%',
+  }
+};
 
 const API_KEY = 'ae74c207989caf1cae1808fa';
 
@@ -52,30 +67,36 @@ const CurrencyConverter = () => {
   };
 
   return (
-    <div className="currency-converter-container">
+    <div className="container p-5 my-5 bg-dark text-white">
       <h2 className='title-name'>Currency Converter</h2>
-      <div className="combo-box-container">
-        <label className="label">From Country:</label>
-        <select className="combo-box" value={selectedFromCountry} onChange={(e) => setSelectedFromCountry(e.target.value)}>
+      <div className="align center">
+        <div>
+        <label className="label">From Country: </label>
+        <select className="form-select-sm" style={styles.lists_boxs} value={selectedFromCountry} onChange={(e) => setSelectedFromCountry(e.target.value)}>
           <option value="">Select a country</option>
           {countries.map((country, index) => (
             <option key={index} value={country}>{country}</option>
           ))}
         </select>
-        <label className="label">To Country:</label>
-        <select className="combo-box" value={selectedToCountry} onChange={(e) => setSelectedToCountry(e.target.value)}>
+        </div>
+        <div>
+        <label className="label">To Country: &nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <select className="form-select-sm"style={styles.lists_boxs} value={selectedToCountry} onChange={(e) => setSelectedToCountry(e.target.value)}>
           <option value="">Select a country</option>
           {countries.map((country, index) => (
             <option key={index} value={country}>{country}</option>
           ))}
         </select>
+        </div>
+        <div>
         <label className="label">Enter amount:</label>
-        <input className="input"
+        <input className="form-select-sm" style={styles.lists_boxs}
           type="number"
           value={amount} defaultValue={1}
           onChange={(e) => setAmount(e.target.value)}
         />
-        <button className="convert-button" onClick={convertAmount}>Convert</button>
+        </div>
+        <button className="btn btn-success" onClick={convertAmount}>Convert</button>
       </div>
       {
       convertedAmount && (
