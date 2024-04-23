@@ -68,55 +68,55 @@ const CurrencyConverter = () => {
   return (
     <div className="container p-5 my-5 bg-dark text-white">
       <h2 className='title-name'>Currency Converter</h2>
-      <div className="align center">
-        <div>
-        <label className="label">From Country: </label>
-        <select className="form-select-sm" style={styles.lists_boxs} value={selectedFromCountry} onChange={(e) => setSelectedFromCountry(e.target.value)}>
-          <option value="">Select a country</option>
-          {countries.map((country, index) => (
-            <option key={index} value={country}>{country}</option>
-          ))}
-        </select>
+        <div className="align center">
+          <div>
+          <label className="label">From Country: </label>
+          <select className="form-select-sm" style={styles.lists_boxs} value={selectedFromCountry} onChange={(e) => setSelectedFromCountry(e.target.value)}>
+            <option value="">Select a country</option>
+            {countries.map((country, index) => (
+              <option key={index} value={country}>{country}</option>
+            ))}
+          </select>
+          </div>
+          <br/>
+          <div>
+          <label className="label">To Country: &nbsp;&nbsp;&nbsp;&nbsp;</label>
+          <select className="form-select-sm"style={styles.lists_boxs} value={selectedToCountry} onChange={(e) => setSelectedToCountry(e.target.value)}>
+            <option value="">Select a country</option>
+            {countries.map((country, index) => (
+              <option key={index} value={country}>{country}</option>
+            ))}
+          </select>
+          </div>
+          <br/>
+          <div>
+          <label className="label">Enter amount:</label>
+          <input className="form-select-sm" style={styles.lists_boxs}
+            type="number"
+            value={amount} defaultValue={1}
+            onChange={(e) => setAmount(e.target.value)}
+          />
+          </div>
+          {
+            convertedAmount && (
+              <div className="converted-amount">
+                <label className="label">Exchange amount is :</label>
+                <span className="converted-amount-value">{convertedAmount}</span>
+              </div>
+              )
+            }
+            {
+            inputError && (
+              <div className="converted-amount">
+                <span className="converted-amount-value">{inputError}</span>
+              </div>
+              )
+            }
+          <br/>
+          <div>
+            <button className="btn btn-success" style={{position: 'absolute'}} onClick={convertAmount}>Convert</button>
+          </div>
         </div>
-        <br/>
-        <div>
-        <label className="label">To Country: &nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <select className="form-select-sm"style={styles.lists_boxs} value={selectedToCountry} onChange={(e) => setSelectedToCountry(e.target.value)}>
-          <option value="">Select a country</option>
-          {countries.map((country, index) => (
-            <option key={index} value={country}>{country}</option>
-          ))}
-        </select>
-        </div>
-        <br/>
-        <div>
-        <label className="label">Enter amount:</label>
-        <input className="form-select-sm" style={styles.lists_boxs}
-          type="number"
-          value={amount} defaultValue={1}
-          onChange={(e) => setAmount(e.target.value)}
-        />
-        </div>
-        <br/>
-        <div>
-          <button className="btn btn-success" style={{position: 'absolute'}} onClick={convertAmount}>Convert</button>
-        </div>
-      </div>
-      {
-      convertedAmount && (
-        <div className="converted-amount">
-          <label className="label">Exchange amount is :</label>
-          <span className="converted-amount-value">{convertedAmount}</span>
-        </div>
-        )
-      }
-      {
-      inputError && (
-        <div className="converted-amount">
-          <span className="converted-amount-value">{inputError}</span>
-        </div>
-        )
-      }
       </div>
       );
     };
