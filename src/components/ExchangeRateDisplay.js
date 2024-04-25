@@ -36,6 +36,7 @@ const CurrencyConverter = () => {
         // Extract country codes from the response data
         const countryList = Object.keys(data.conversion_rates);
         setCountries(countryList);
+        setAmount(1);
       } catch (error) {
         console.error('Error fetching country list:', error);
       }
@@ -65,37 +66,51 @@ const CurrencyConverter = () => {
     }
   };
 
+  const handleSwapCurrencies = () => {
+    // Swap the values of fromCurrency and toCurrency
+    const tempCurrency = selectedFromCountry;
+    setSelectedFromCountry(selectedToCountry);
+    setSelectedToCountry(tempCurrency);
+  };
+
+  const isButtonDisabled = selectedFromCountry === '' || selectedToCountry === '';
+
   return (
     <div className="container p-5 my-5 bg-dark text-white">
       <h2 className='title-name'>Currency Converter</h2>
         <div className="align center">
           <div>
-          <label className="label">From Country: </label>
-          <select className="form-select-sm" style={styles.lists_boxs} value={selectedFromCountry} onChange={(e) => setSelectedFromCountry(e.target.value)}>
-            <option value="">Select a country</option>
-            {countries.map((country, index) => (
-              <option key={index} value={country}>{country}</option>
-            ))}
-          </select>
+            <label className="label">From Country: </label>
+            <select className="form-select-sm" style={styles.lists_boxs} value={selectedFromCountry} onChange={(e) => setSelectedFromCountry(e.target.value)}>
+              <option value="">Select a country</option>
+              {countries.map((country, index) => (
+                <option key={index} value={country}>{country}</option>
+              ))}
+            </select>
           </div>
           <br/>
           <div>
-          <label className="label">To Country: &nbsp;&nbsp;&nbsp;&nbsp;</label>
-          <select className="form-select-sm"style={styles.lists_boxs} value={selectedToCountry} onChange={(e) => setSelectedToCountry(e.target.value)}>
-            <option value="">Select a country</option>
-            {countries.map((country, index) => (
-              <option key={index} value={country}>{country}</option>
-            ))}
-          </select>
+            <button className="btn btn-success" style={{position: 'absolute',backgroundColor: '#373b3e'}} onClick={handleSwapCurrencies}>&#8693;</button>
+          </div>
+          <br/>
+          <br/>
+          <div>
+            <label className="label">To Country: &nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <select className="form-select-sm"style={styles.lists_boxs} value={selectedToCountry} onChange={(e) => setSelectedToCountry(e.target.value)}>
+              <option value="">Select a country</option>
+              {countries.map((country, index) => (
+                <option key={index} value={country}>{country}</option>
+              ))}
+            </select>
           </div>
           <br/>
           <div>
-          <label className="label">Enter amount:</label>
-          <input className="form-select-sm" style={styles.lists_boxs}
-            type="number"
-            value={amount} defaultValue={1}
-            onChange={(e) => setAmount(e.target.value)}
-          />
+            <label className="label">Enter amount:</label>
+            <input className="form-select-sm" style={styles.lists_boxs}
+              type="number"
+              value={amount} defaultValue={1}
+              onChange={(e) => setAmount(e.target.value)}
+            />
           </div>
           {
             convertedAmount && (
@@ -114,7 +129,7 @@ const CurrencyConverter = () => {
             }
           <br/>
           <div>
-            <button className="btn btn-success" style={{position: 'absolute'}} onClick={convertAmount}>Convert</button>
+            <button className="btn btn-success" style={{position: 'absolute'}} onClick={convertAmount} disabled={isButtonDisabled}>Convert</button>
           </div>
         </div>
       </div>
